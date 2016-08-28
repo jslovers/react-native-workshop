@@ -23,11 +23,14 @@ export class Todo extends Component {
     render() {
         return ( 
             <View style={styles.container} >
-                <ListView 
+                <ListView style={styles.list}
                   dataSource={this.state.todos} 
                   renderRow={(row)=>{ return <RowItem row={row}/>}}
                   renderSeparator={()=>{ return <View style={{ borderBottomWidth : 1, borderColor : "#ccc" }}></View> }}
-                  ></ListView> 
+                ></ListView>
+                <View style={styles.form}>
+                    
+                </View>
             </View>
         );
     }
@@ -36,5 +39,11 @@ export class Todo extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    form : {
+        flex : 2
+    },
+    list : {
+       flex : 8
     }
 });
