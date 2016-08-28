@@ -20,17 +20,18 @@ export class Todo extends Component {
         var component = this;
         this.todoDataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
-            todos: this.todoDataSource.cloneWithRows(["Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something"])
+            todos: this.todoDataSource.cloneWithRows(["Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something",   "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something"])
         };
     }
 
     render() {
+        var index = 0;
         return ( 
             <View style={styles.container} >
                 <ListView style={styles.list}
                   dataSource={this.state.todos} 
-                  renderRow={(row)=>{ return <RowItem row={row}/>}}
-                  renderSeparator={()=>{ return <View style={{ borderBottomWidth : 1, borderColor : "#ccc" }}></View> }}
+                  renderRow={(row)=>{ return <RowItem key={index++} row={row}/>}}
+                  renderSeparator={(row)=>{ return <View key={index++} style={{ borderBottomWidth : 1, borderColor : "#8297F6" }}></View> }}
                 ></ListView>
                 <TodoForm></TodoForm>
             </View>
