@@ -4,22 +4,25 @@ import {
     Text,
     TextInput,
     View,
-    TouchableHighlight
+    TouchableHighlight,
+    ListView
 } from 'react-native';
 
 export class TodoForm extends Component {
     
-    onPress()
+    constructor(prop, context)
         {
-            console.log("Save");
+            super(prop, context);
+            this.state = {};
+            this.state.note = { text : '' };
         }
     
     render() {
         return (
             <View style={Styles.form}>
                 <Text style={Styles.label}>Add new note</Text>
-                <TextInput style={Styles.todoInput} multiline={true}/>
-                <TouchableHighlight style={Styles.button} onPress={this.onPress} underlayColor={"#8297F6"}>
+                <TextInput onChangeText={(note) => this.setState({note})} style={Styles.todoInput} multiline={true}/>
+                <TouchableHighlight style={Styles.button} onPress={this.props.saveform.bind(this, this.state.note)} underlayColor={"#8297F6"}>
                     <Text style={{color : "#fff"}}>Save</Text>
                 </TouchableHighlight>
             </View>
