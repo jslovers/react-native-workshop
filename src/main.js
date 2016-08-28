@@ -7,6 +7,10 @@ import {
 } from 'react-native';
 
 import { RowItem } from './components/todo-list-row';
+import { TodoForm } from './components/todo-form';
+
+
+
 
 export class Todo extends Component {
 
@@ -28,9 +32,7 @@ export class Todo extends Component {
                   renderRow={(row)=>{ return <RowItem row={row}/>}}
                   renderSeparator={()=>{ return <View style={{ borderBottomWidth : 1, borderColor : "#ccc" }}></View> }}
                 ></ListView>
-                <View style={styles.form}>
-                    
-                </View>
+                <TodoForm></TodoForm>
             </View>
         );
     }
@@ -39,9 +41,6 @@ export class Todo extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1
-    },
-    form : {
-        flex : 2
     },
     list : {
        flex : 8
