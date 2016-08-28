@@ -14,7 +14,16 @@ export class TodoForm extends Component {
         {
             super(prop, context);
             this.state = {};
-            this.state.note = { text : '' };
+            this.state.note = "";
+        }
+
+    saveForm()
+        {
+            if(this.state.note && this.state.note !== "")
+                {
+                    this.props.saveform(this.state.note);
+                }
+            
         }
     
     render() {
@@ -22,7 +31,7 @@ export class TodoForm extends Component {
             <View style={Styles.form}>
                 <Text style={Styles.label}>Add new note</Text>
                 <TextInput onChangeText={(note) => this.setState({note})} style={Styles.todoInput} multiline={true}/>
-                <TouchableHighlight style={Styles.button} onPress={this.props.saveform.bind(this, this.state.note)} underlayColor={"#8297F6"}>
+                <TouchableHighlight style={Styles.button} onPress={this.saveForm.bind(this)} underlayColor={"#8297F6"}>
                     <Text style={{color : "#fff"}}>Save</Text>
                 </TouchableHighlight>
             </View>
@@ -57,6 +66,6 @@ var Styles = StyleSheet.create({
         borderColor : "#ccc",
         height : 60,
         padding : 5,
-        fontSize : 14
+        fontSize : 12
     }
 })

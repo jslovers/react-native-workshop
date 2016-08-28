@@ -33,8 +33,6 @@ export class Todo extends Component {
 
     saveNewNote(note)
       {
-          console.log(this);
-
           this.todos.push(note);
           this.setState({
               todos : this.todoDataSource.cloneWithRows(this.todos)
