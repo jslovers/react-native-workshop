@@ -14,17 +14,20 @@ export class Todo extends Component {
         super(prop, context);
 
         var component = this;
-        var todoDataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
+        this.todoDataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
-            todos: todoDataSource.cloneWithRows(["Do Something", "Really Do Something"])
+            todos: this.todoDataSource.cloneWithRows(["Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something","Do Something", "Really Do Something"])
         };
     }
 
     render() {
         return ( 
             <View style={styles.container} >
-                <ListView dataSource={this.state.todos} renderRow={(row)=>{ return <RowItem row={row}/> }} ></ListView> 
+                <ListView 
+                  dataSource={this.state.todos} 
+                  renderRow={(row)=>{ return <RowItem row={row}/>}}
+                  renderSeparator={()=>{ return <View style={{ borderBottomWidth : 1, borderColor : "#ccc" }}></View> }}
+                  ></ListView> 
             </View>
         );
     }
