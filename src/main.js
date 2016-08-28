@@ -1,45 +1,37 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+    StyleSheet,
+    Text,
+    View,
+    ListView
 } from 'react-native';
 
+import { RowItem } from './components/todo-list-row';
+
 export class Todo extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
+
+    constructor(prop, context) {
+        super(prop, context);
+
+        var component = this;
+        var todoDataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
+        this.state = {
+            todos: todoDataSource.cloneWithRows(["Do Something", "Really Do Something"])
+        };
+    }
+
+    render() {
+        return ( 
+            <View style={styles.container} >
+                <ListView dataSource={this.state.todos} renderRow={(row)=>{ return <RowItem row={row}/> }} ></ListView> 
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    container: {
+        flex: 1
+    }
 });
